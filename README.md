@@ -2,7 +2,7 @@
 
 Ссылка на бота: https://t.me/tolstoy_or_computer_bot или @tolstoy_or_computer_bot
 
-Ссылка на pythonanywhere: http://asaunina.pythonanywhere.com/ 
+Ссылка на pythonanywhere: http://anastasiasaunina.pythonanywhere.com/
 
 ## Что делает бот?
 
