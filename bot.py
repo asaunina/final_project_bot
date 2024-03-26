@@ -7,6 +7,7 @@ from telebot import types
 import emoji
 import flask
 import zipfile
+import config
 morph = MorphAnalyzer()
 
 with zipfile.ZipFile('tolstoy.zip', 'r') as zip_ref:
@@ -15,14 +16,14 @@ with zipfile.ZipFile('tolstoy.zip', 'r') as zip_ref:
 fin_df = pd.read_csv('final_tolstoy.csv', sep='@')
 
 # Создаем бота
-TOKEN = '77145425750:AAEzomyfMGxVLpL9aCME-d6DMJa0Nt54Dt0'
+TOKEN = 'mytoken
 WEBHOOK_HOST = 'asaunina.pythonanywhere.com'
 WEBHOOK_PORT = '443'
 
-bot = telebot.TeleBot(TOKEN, threaded=False)
+bot = telebot.TeleBot(config.TOKEN, threaded=False)
 
-WEBHOOK_URL_BASE = "https://{}:{}".format(WEBHOOK_HOST, WEBHOOK_PORT)
-WEBHOOK_URL_PATH = "/{}/".format(TOKEN)
+WEBHOOK_URL_BASE = "https://{}:{}".format(config.WEBHOOK_HOST, config.WEBHOOK_PORT)
+WEBHOOK_URL_PATH = "/{}/".format(config.TOKEN)
 
 bot.remove_webhook()
 
