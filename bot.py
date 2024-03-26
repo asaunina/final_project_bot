@@ -6,13 +6,27 @@ import matplotlib.pyplot as plt
 import telebot
 from telebot import types
 import emoji
+import flask
 morph = MorphAnalyzer()
+
 
 fin_df = pd.read_csv('final_tolstoy.csv', sep='@')
 
 # Создаем бота
-token = '7145425750:AAFqpZKMmqVTHYhDONV9PxNFR-sSrj7JR0s'
-bot = telebot.TeleBot(token)
+TOKEN = '7145425750:AAFqpZKMmqVTHYhDONV9PxNFR-sSrj7JR0s'
+WEBHOOK_HOST = 'asaunina.pythonanywhere.com'
+WEBHOOK_PORT = '443'
+
+bot = telebot.TeleBot(TOKEN, threaded=False)
+
+WEBHOOK_URL_BASE = "https://{}:{}".format(WEBHOOK_HOST, WEBHOOK_PORT)
+WEBHOOK_URL_PATH = "/{}/".format(TOKEN)
+
+bot.remove_webhook()
+
+bot.set_webhook(url=WEBHOOK_URL_BASE+WEBHOOK_URL_PATH)
+
+app = flask.Flask(__name__)
 
 # Нужные словарики для учета нужной информации
 guessed_person = {}
@@ -339,3 +353,19 @@ def helping(message):
 
 # Чтобы работало :)
 bot.infinity_polling()
+
+
+@app.route('/', methods=['GET', 'HEAD'])
+def index():
+    return 'ok'
+
+
+@app.route(WEBHOOK_URL_PATH, methods=['POST'])
+def webhook():
+    if flask.request.headers.get('content-type') == 'application/json':
+        json_string = flask.request.get_data().decode('utf-8')
+        update = telebot.types.Update.de_json(json_string)
+        bot.process_new_updates([update])
+        return ''
+    else:
+        flask.abort(403)
