@@ -25,7 +25,7 @@ bot = telebot.TeleBot(config.TOKEN, threaded=False)
 WEBHOOK_URL_BASE = "https://{}:{}".format(config.WEBHOOK_HOST, config.WEBHOOK_PORT)
 WEBHOOK_URL_PATH = "/{}/".format(config.TOKEN)
 
-bot.remove_webhook()
+bot.delete_webhook()
 
 bot.set_webhook(url=WEBHOOK_URL_BASE+WEBHOOK_URL_PATH)
 
