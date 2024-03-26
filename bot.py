@@ -1,19 +1,21 @@
 import random
 from pymorphy2 import MorphAnalyzer
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import telebot
 from telebot import types
 import emoji
 import flask
+import zipfile
 morph = MorphAnalyzer()
 
+with zipfile.ZipFile('tolstoy.zip', 'r') as zip_ref:
+    zip_ref.extractall()
 
 fin_df = pd.read_csv('final_tolstoy.csv', sep='@')
 
 # Создаем бота
-TOKEN = '7145425750:AAFqpZKMmqVTHYhDONV9PxNFR-sSrj7JR0s'
+TOKEN = '77145425750:AAEzomyfMGxVLpL9aCME-d6DMJa0Nt54Dt0'
 WEBHOOK_HOST = 'asaunina.pythonanywhere.com'
 WEBHOOK_PORT = '443'
 
@@ -52,7 +54,7 @@ def start_message(message):
                      "Второе -- сгенеированное компьютером. Ты должен угадать, какое предложение сгенерировано.\n\n"
                      ":white_question_mark: Если вдруг тебе нужно будет напомнить правила, можешь ввести команду /help.\n\n"
                      ":chart_increasing: Чтобы посмотреть статистику, введи команду /stats :chart_decreasing:\n\n"
-                     "Удачи! :smiling_face_with_open_hands:\n\n"   
+                     "Удачи! :smiling_face_with_open_hands:\n\n"
                      "Нажми на кнопку, когда будешь готов к игре!"), reply_markup=keyboard)
 
 
