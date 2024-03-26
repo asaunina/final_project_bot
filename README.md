@@ -1,6 +1,6 @@
 # Толстой или компьютер?
 
-Ссылка на бота: https://t.me/tolstoy_or_computer_bot или @tolstoy_or_computer_bot
+Ссылка на бота: [https://t.me/tolstoy_or_computer_bot или @tolstoy_or_computer_bot](https://t.me/TolstoyOrComputer_bot)
 
 Ссылка на pythonanywhere: http://anastasiasaunina.pythonanywhere.com/
 
